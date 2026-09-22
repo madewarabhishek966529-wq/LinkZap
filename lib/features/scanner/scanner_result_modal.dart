@@ -41,7 +41,10 @@ class ScannerResultModal extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final type = QrGeneratorService.detectInputType(rawBarcodeData);
-    final isUrl = type == QrType.url || rawBarcodeData.startsWith('http://') || rawBarcodeData.startsWith('https://') || rawBarcodeData.contains('.');
+    final isUrl = type == QrType.url ||
+        rawBarcodeData.startsWith('http://') ||
+        rawBarcodeData.startsWith('https://') ||
+        rawBarcodeData.contains('.');
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     String domain = '';
@@ -80,7 +83,7 @@ class ScannerResultModal extends ConsumerWidget {
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: AppTheme.zapPrimary.withOpacity(0.2),
+                  color: AppTheme.zapPrimary.withValues(alpha: 0.2),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(Icons.qr_code_scanner_rounded, color: AppTheme.zapPrimary, size: 28),
@@ -105,7 +108,7 @@ class ScannerResultModal extends ConsumerWidget {
               decoration: BoxDecoration(
                 color: isDark ? AppTheme.darkSurfaceVariant : Colors.amber.shade50,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppTheme.zapPrimary.withOpacity(0.5)),
+                border: Border.all(color: AppTheme.zapPrimary.withValues(alpha: 0.5)),
               ),
               child: Row(
                 children: [
@@ -197,7 +200,7 @@ class ScannerResultModal extends ConsumerWidget {
                   icon: const Icon(Icons.share_rounded, size: 18),
                   label: const Text('Share'),
                   onPressed: () {
-                    Share.share(rawBarcodeData);
+                    SharePlus.instance.share(ShareParams(text: rawBarcodeData));
                   },
                 ),
               ),

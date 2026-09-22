@@ -88,21 +88,24 @@ class _QrPreviewScreenState extends ConsumerState<QrPreviewScreen> {
                   const SizedBox(height: 16),
                   const Text('Select Resolution Quality:', style: TextStyle(fontWeight: FontWeight.w600)),
                   const SizedBox(height: 12),
-                  ...QrExportQuality.values.map((q) {
-                    return RadioListTile<QrExportQuality>(
-                      value: q,
-                      groupValue: selectedQuality,
-                      title: Text(q.label, style: const TextStyle(fontWeight: FontWeight.w500)),
-                      activeColor: AppTheme.zapPrimary,
-                      onChanged: (val) {
-                        if (val != null) {
-                          setModalState(() {
-                            selectedQuality = val;
-                          });
-                        }
-                      },
-                    );
-                  }).toList(),
+                  RadioGroup<QrExportQuality>(
+                    groupValue: selectedQuality,
+                    onChanged: (val) {
+                      if (val != null) {
+                        setModalState(() {
+                          selectedQuality = val;
+                        });
+                      }
+                    },
+                    child: Column(
+                      children: QrExportQuality.values.map((q) {
+                        return RadioListTile<QrExportQuality>(
+                          value: q,
+                          title: Text(q.label, style: const TextStyle(fontWeight: FontWeight.w500)),
+                        );
+                      }).toList(),
+                    ),
+                  ),
                   const SizedBox(height: 20),
                   SizedBox(
                     width: double.infinity,
@@ -122,15 +125,13 @@ class _QrPreviewScreenState extends ConsumerState<QrPreviewScreen> {
                             model: _currentModel,
                             quality: selectedQuality,
                           );
-                          if (mounted) {
-                            SuccessToast.show(context, '✓ Saved to Gallery');
-                          }
+                          if (!context.mounted) return;
+                          SuccessToast.show(context, '✓ Saved to Gallery');
                         } catch (e) {
-                          if (mounted) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Failed to save image to gallery.')),
-                            );
-                          }
+                          if (!context.mounted) return;
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Failed to save image to gallery.')),
+                          );
                         }
                       },
                     ),
@@ -201,7 +202,7 @@ class _QrPreviewScreenState extends ConsumerState<QrPreviewScreen> {
                     Navigator.pop(context);
                   },
                 );
-              }).toList(),
+              }),
             ],
           ),
         );
@@ -246,7 +247,7 @@ class _QrPreviewScreenState extends ConsumerState<QrPreviewScreen> {
                 duration: const Duration(milliseconds: 250),
                 transitionBuilder: (child, anim) => ScaleTransition(scale: anim, child: child),
                 child: CustomQrWidget(
-                  key: ValueKey('${_currentModel.foregroundColor.value}_${_currentModel.backgroundColor.value}_${_currentModel.dotStyle.name}_${_currentModel.eyeStyle.name}_${_currentModel.logoPath}'),
+                  key: ValueKey('${_currentModel.foregroundColor.toARGB32()}_${_currentModel.backgroundColor.toARGB32()}_${_currentModel.dotStyle.name}_${_currentModel.eyeStyle.name}_${_currentModel.logoPath}'),
                   model: _currentModel,
                   size: 270,
                 ),
@@ -356,7 +357,7 @@ class _QrPreviewScreenState extends ConsumerState<QrPreviewScreen> {
                       const Color(0xFFDC2626),
                       const Color(0xFFD97706),
                     ].map((color) {
-                      final isSelected = _currentModel.foregroundColor.value == color.value;
+                      final isSelected = _currentModel.foregroundColor.toARGB32() == color.toARGB32();
                       return GestureDetector(
                         onTap: () {
                           HapticService.selectionClick();
@@ -396,7 +397,7 @@ class _QrPreviewScreenState extends ConsumerState<QrPreviewScreen> {
                       const Color(0xFFECFDF5),
                       const Color(0xFFFFFBEB),
                     ].map((color) {
-                      final isSelected = _currentModel.backgroundColor.value == color.value;
+                      final isSelected = _currentModel.backgroundColor.toARGB32() == color.toARGB32();
                       return GestureDetector(
                         onTap: () {
                           HapticService.selectionClick();
@@ -541,7 +542,7 @@ class _QrPreviewScreenState extends ConsumerState<QrPreviewScreen> {
           color: isDark ? AppTheme.darkSurface : Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 16,
               offset: const Offset(0, -4),
             ),

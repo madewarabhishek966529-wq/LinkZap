@@ -32,47 +32,32 @@ class SettingsScreen extends ConsumerWidget {
               borderRadius: BorderRadius.circular(16),
               border: Border.all(color: isDark ? Colors.white10 : Colors.black12),
             ),
-            child: Column(
-              children: [
-                RadioListTile<ThemeMode>(
-                  value: ThemeMode.system,
-                  groupValue: settings.themeMode,
-                  title: const Text('System Default'),
-                  activeColor: AppTheme.zapPrimary,
-                  onChanged: (mode) {
-                    if (mode != null) {
-                      HapticService.selectionClick();
-                      settingsNotifier.setThemeMode(mode);
-                    }
-                  },
-                ),
-                const Divider(height: 1),
-                RadioListTile<ThemeMode>(
-                  value: ThemeMode.light,
-                  groupValue: settings.themeMode,
-                  title: const Text('Light Mode'),
-                  activeColor: AppTheme.zapPrimary,
-                  onChanged: (mode) {
-                    if (mode != null) {
-                      HapticService.selectionClick();
-                      settingsNotifier.setThemeMode(mode);
-                    }
-                  },
-                ),
-                const Divider(height: 1),
-                RadioListTile<ThemeMode>(
-                  value: ThemeMode.dark,
-                  groupValue: settings.themeMode,
-                  title: const Text('Dark Mode'),
-                  activeColor: AppTheme.zapPrimary,
-                  onChanged: (mode) {
-                    if (mode != null) {
-                      HapticService.selectionClick();
-                      settingsNotifier.setThemeMode(mode);
-                    }
-                  },
-                ),
-              ],
+            child: RadioGroup<ThemeMode>(
+              groupValue: settings.themeMode,
+              onChanged: (mode) {
+                if (mode != null) {
+                  HapticService.selectionClick();
+                  settingsNotifier.setThemeMode(mode);
+                }
+              },
+              child: Column(
+                children: [
+                  RadioListTile<ThemeMode>(
+                    value: ThemeMode.system,
+                    title: const Text('System Default'),
+                  ),
+                  const Divider(height: 1),
+                  RadioListTile<ThemeMode>(
+                    value: ThemeMode.light,
+                    title: const Text('Light Mode'),
+                  ),
+                  const Divider(height: 1),
+                  RadioListTile<ThemeMode>(
+                    value: ThemeMode.dark,
+                    title: const Text('Dark Mode'),
+                  ),
+                ],
+              ),
             ),
           ),
 
@@ -93,7 +78,7 @@ class SettingsScreen extends ConsumerWidget {
                   title: const Text('Smart Clipboard Detection'),
                   subtitle: const Text('Detect copied links on launch'),
                   value: settings.enableClipboardDetection,
-                  activeColor: AppTheme.zapPrimary,
+                  activeThumbColor: AppTheme.zapPrimary,
                   onChanged: (val) {
                     HapticService.selectionClick();
                     settingsNotifier.toggleClipboardDetection(val);
@@ -104,7 +89,7 @@ class SettingsScreen extends ConsumerWidget {
                   title: const Text('Haptic Feedback'),
                   subtitle: const Text('Vibrate on key actions & Zaps'),
                   value: settings.enableHaptics,
-                  activeColor: AppTheme.zapPrimary,
+                  activeThumbColor: AppTheme.zapPrimary,
                   onChanged: (val) {
                     settingsNotifier.toggleHaptics(val);
                   },

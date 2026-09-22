@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-import 'package:flutter/material.dart';
 import 'package:gal/gal.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -40,8 +39,14 @@ class ExportService {
       data: model.content,
       version: QrVersions.auto,
       errorCorrectionLevel: _mapErrorCorrection(model.errorCorrection),
-      color: model.foregroundColor,
-      emptyColor: model.backgroundColor,
+      dataModuleStyle: QrDataModuleStyle(
+        dataModuleShape: QrDataModuleShape.square,
+        color: model.foregroundColor,
+      ),
+      eyeStyle: QrEyeStyle(
+        eyeShape: QrEyeShape.square,
+        color: model.foregroundColor,
+      ),
       gapless: true,
     );
 
@@ -95,13 +100,17 @@ class ExportService {
     final xFile = XFile(file.path);
 
     if (includeText) {
-      await Share.shareXFiles(
-        [xFile],
-        text: 'QR Code created with LinkZap:\n${model.content}',
-        subject: model.title,
+      await SharePlus.instance.share(
+        ShareParams(
+          files: [xFile],
+          text: 'QR Code created with LinkZap:\n${model.content}',
+          subject: model.title,
+        ),
       );
     } else {
-      await Share.shareXFiles([xFile], subject: model.title);
+      await SharePlus.instance.share(
+        ShareParams(files: [xFile], subject: model.title),
+      );
     }
   }
 }

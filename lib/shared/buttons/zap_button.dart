@@ -73,7 +73,7 @@ class _ZapButtonState extends State<ZapButton> with SingleTickerProviderStateMix
               borderRadius: BorderRadius.circular(18),
               boxShadow: [
                 BoxShadow(
-                  color: AppTheme.zapPrimary.withOpacity(0.4),
+                  color: AppTheme.zapPrimary.withValues(alpha: 0.4),
                   blurRadius: 16,
                   offset: const Offset(0, 6),
                 ),

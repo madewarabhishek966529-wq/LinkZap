@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.linkzap"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 37
     ndkVersion = "30.0.16248370"
 
     compileOptions {

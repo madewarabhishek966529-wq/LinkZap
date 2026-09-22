@@ -184,7 +184,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                       showCheckmark: false,
                     ),
                   );
-                }).toList(),
+                }),
               ],
             ),
           ),
@@ -279,7 +279,7 @@ class _HistoryScreenState extends ConsumerState<HistoryScreen> {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: AppTheme.zapPrimary.withOpacity(0.15),
+                    color: AppTheme.zapPrimary.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(item.type.icon, color: AppTheme.zapPrimary, size: 24),

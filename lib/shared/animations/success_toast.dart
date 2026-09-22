@@ -93,12 +93,12 @@ class _ToastWidgetState extends State<_ToastWidget> with SingleTickerProviderSta
                       color: isDark ? const Color(0xFF1E293B) : Colors.white,
                       borderRadius: BorderRadius.circular(30),
                       border: Border.all(
-                        color: AppTheme.zapPrimary.withOpacity(0.5),
+                        color: AppTheme.zapPrimary.withValues(alpha: 0.5),
                         width: 1.5,
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.15),
+                          color: Colors.black.withValues(alpha: 0.15),
                           blurRadius: 16,
                           offset: const Offset(0, 8),
                         ),

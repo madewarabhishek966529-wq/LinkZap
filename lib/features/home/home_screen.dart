@@ -150,10 +150,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 decoration: BoxDecoration(
                   color: isDark ? AppTheme.darkSurface : AppTheme.lightSurface,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: AppTheme.zapPrimary.withOpacity(0.5)),
+                  border: Border.all(color: AppTheme.zapPrimary.withValues(alpha: 0.5)),
                   boxShadow: [
                     BoxShadow(
-                      color: AppTheme.zapPrimary.withOpacity(0.1),
+                      color: AppTheme.zapPrimary.withValues(alpha: 0.1),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),
