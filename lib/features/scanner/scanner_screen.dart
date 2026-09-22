@@ -4,7 +4,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import '../../app/theme/app_theme.dart';
 import '../../core/services/haptic_service.dart';
-import '../history/history_provider.dart';
 import 'scanner_result_modal.dart';
 
 class ScannerScreen extends ConsumerStatefulWidget {

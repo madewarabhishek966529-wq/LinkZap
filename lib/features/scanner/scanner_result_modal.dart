@@ -40,7 +40,7 @@ class ScannerResultModal extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final type = QrGeneratorService.detectInputType(rawBarcodeData);
-    final isUrl = type == Uri || rawBarcodeData.startsWith('http://') || rawBarcodeData.startsWith('https://') || rawBarcodeData.contains('.');
+    final isUrl = type == QrType.url || rawBarcodeData.startsWith('http://') || rawBarcodeData.startsWith('https://') || rawBarcodeData.contains('.');
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     String domain = '';
