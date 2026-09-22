@@ -3,25 +3,25 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   // Brand Colors
-  static const Color zapPrimary = Color(#FFC107); // Electric Yellow/Amber
-  static const Color zapPrimaryDark = Color(#FFA000);
-  static const Color zapAccent = Color(#38BDF8); // Electric Cyan
-  static const Color zapSuccess = Color(#10B981); // Emerald Green
-  static const Color zapError = Color(#EF4444); // Red
+  static const Color zapPrimary = Color(0xFFFFC107); // Electric Yellow/Amber
+  static const Color zapPrimaryDark = Color(0xFFFFA000);
+  static const Color zapAccent = Color(0xFF38BDF8); // Electric Cyan
+  static const Color zapSuccess = Color(0xFF10B981); // Emerald Green
+  static const Color zapError = Color(0xFFEF4444); // Red
 
   // Dark Palette
-  static const Color darkBackground = Color(#0F172A); // Deep Slate
-  static const Color darkSurface = Color(#1E293B); // Slate Surface
-  static const Color darkSurfaceVariant = Color(#334155);
-  static const Color darkTextPrimary = Color(#F8FAFC);
-  static const Color darkTextSecondary = Color(#94A3B8);
+  static const Color darkBackground = Color(0xFF0F172A); // Deep Slate
+  static const Color darkSurface = Color(0xFF1E293B); // Slate Surface
+  static const Color darkSurfaceVariant = Color(0xFF334155);
+  static const Color darkTextPrimary = Color(0xFFF8FAFC);
+  static const Color darkTextSecondary = Color(0xFF94A3B8);
 
   // Light Palette
-  static const Color lightBackground = Color(#F8FAFC);
-  static const Color lightSurface = Color(#FFFFFF);
-  static const Color lightSurfaceVariant = Color(#F1F5F9);
-  static const Color lightTextPrimary = Color(#0F172A);
-  static const Color lightTextSecondary = Color(#64748B);
+  static const Color lightBackground = Color(0xFFF8FAFC);
+  static const Color lightSurface = Color(0xFFFFFFFF);
+  static const Color lightSurfaceVariant = Color(0xFFF1F5F9);
+  static const Color lightTextPrimary = Color(0xFF0F172A);
+  static const Color lightTextSecondary = Color(0xFF64748B);
 
   static ThemeData get lightTheme {
     final baseTextTheme = GoogleFonts.outfitTextTheme();
@@ -57,7 +57,7 @@ class AppTheme {
         elevation: 0,
         centerTitle: false,
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: lightSurface,
         elevation: 1,
         shadowColor: Colors.black.withOpacity(0.05),
@@ -124,7 +124,7 @@ class AppTheme {
         elevation: 0,
         centerTitle: false,
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: darkSurface,
         elevation: 2,
         shadowColor: Colors.black.withOpacity(0.3),

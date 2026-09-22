@@ -48,7 +48,7 @@ class _ToastWidgetState extends State<_ToastWidget> with SingleTickerProviderSta
     );
 
     _scaleAnimation = Tween<double>(begin: 0.7, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.backOut),
+      CurvedAnimation(parent: _controller, curve: Curves.easeOutBack),
     );
 
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -76,7 +76,7 @@ class _ToastWidgetState extends State<_ToastWidget> with SingleTickerProviderSta
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return SafeArea(
-      child: AlignmentTransition(
+      child: Align(
         alignment: const Alignment(0, -0.75),
         child: AnimatedBuilder(
           animation: _controller,

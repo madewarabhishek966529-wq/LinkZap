@@ -1,16 +1,19 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:linkzap/app/app.dart';
+import 'package:linkzap/app/router.dart';
 
 void main() {
-  testWidgets('LinkZap app renders splash screen properly', (WidgetTester tester) async {
+  testWidgets('MainNavigationScaffold renders Home tab properly', (WidgetTester tester) async {
     await tester.pumpWidget(
       const ProviderScope(
-        child: LinkZapApp(),
+        child: MaterialApp(
+          home: MainNavigationScaffold(),
+        ),
       ),
     );
 
-    expect(find.text('Link'), findsOneWidget);
-    expect(find.text('Zap'), findsOneWidget);
+    expect(find.text('Paste. Zap. Share.'), findsOneWidget);
+    expect(find.text('⚡ ZAP QR'), findsOneWidget);
   });
 }

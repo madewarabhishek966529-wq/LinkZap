@@ -8,6 +8,7 @@ import '../../data/models/qr_code_model.dart';
 import '../../shared/animations/success_toast.dart';
 import '../../shared/widgets/custom_qr_widget.dart';
 import '../collections/collections_provider.dart';
+import '../generator/generator_provider.dart';
 import '../history/history_provider.dart';
 
 class QrPreviewScreen extends ConsumerStatefulWidget {

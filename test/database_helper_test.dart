@@ -65,7 +65,7 @@ void main() {
       );
 
       final id = await DatabaseHelper.instance.insertQrCode(model);
-      expect(id, isGreaterThan(0));
+      expect(id, greaterThan(0));
 
       final list = await DatabaseHelper.instance.getAllQrCodes();
       expect(list.length, 1);
