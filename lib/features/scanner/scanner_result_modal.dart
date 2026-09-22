@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../app/theme/app_theme.dart';
 import '../../core/services/haptic_service.dart';
 import '../../core/services/qr_generator_service.dart';
+import '../../data/models/qr_code_model.dart';
 import '../../shared/animations/success_toast.dart';
 import '../generator/generator_provider.dart';
 import '../preview/qr_preview_screen.dart';
