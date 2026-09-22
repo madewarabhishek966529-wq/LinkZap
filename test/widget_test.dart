@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:linkzap/app/router.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() {
+  setUpAll(() {
+    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
+  });
+
   testWidgets('MainNavigationScaffold renders Home tab properly', (WidgetTester tester) async {
     await tester.pumpWidget(
       const ProviderScope(
